@@ -102,6 +102,12 @@ hr{
 	border-color: #ECECEC;
 }
 
+.bg--dark{
+	hr{
+		border-color: lighten(@color-dark, 20%)
+	}
+}
+
 [class*='bg-']:not(.bg--white):not(.bg--secondary), [class*='imagebg']:not(.image--light){
 	p{
 		opacity: .9;
