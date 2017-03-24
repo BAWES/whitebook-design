@@ -56,3 +56,26 @@
 		}
 	}
 }
+
+@media all and (min-width: (@boxed-layout-width)){
+	body.boxed-layout{
+		> section.bar-3:first-of-type{
+			border-radius: 6px 6px 0 0;
+		}
+		.main-container{
+			> footer{
+				&:last-child{
+					border-radius: 0 0 6px 6px;
+				}
+			}
+		}
+	}
+}
+
+body.boxed-layout{
+	.modal-container{
+		section:not([class*='bg-']){
+			background: none;
+		}
+	}
+}

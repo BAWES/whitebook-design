@@ -50,6 +50,21 @@
 			opacity: .9;
 		}
 	}
+	&.bg--error{
+		background: @color-error;
+		border-color: @color-error !important;
+		&:hover{
+			background: lighten(@color-error, 5%);
+			border-color: lighten(@color-error, 5%) !important;
+			color: #fff !important;
+		}
+		.btn__text{
+			color: #fff;
+			i{
+				color: #fff;
+			}
+		}
+	}
 }
 
 @media all and (min-width: 768px){

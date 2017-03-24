@@ -38,3 +38,11 @@
 		.box-shadow-shallow;
 	}
 }
+
+.bg--primary-1{
+	.label{
+		&:not([class*='bg--']){
+			background: @color-primary-2;
+		}
+	}
+}

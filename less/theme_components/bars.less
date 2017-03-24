@@ -1,5 +1,12 @@
 /*! -- Stack Bars -- */
 
+.bar{
+	.logo{
+		max-height: @logo-max-height;
+		max-width: none;
+	}
+}
+
 .menu-horizontal{
 	> li{
 		> a, > .modal-instance > a{
@@ -42,16 +49,13 @@
 		.menu-horizontal{
 			> li{
 				display: inline-block;
-				&:not(:first-child):not(.dropdown--active){
+				&:not(:first-child){
 					margin-left: @base-line-height/2;
 				}
 			}
 		}
 		.bar__module{
 			margin-bottom: @base-line-height;
-		}
-		.dropdown__container{
-			left: 0 !important;
 		}
 		.row{
 			div[class*='col-']{
@@ -94,7 +98,9 @@
 
 .bar-2{
 	.logo{
-		max-height: @base-line-height;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 }
 
