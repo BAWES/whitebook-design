@@ -30,3 +30,10 @@ section.height-auto{
 		transform: none;
 	}
 }
+
+@media all and (max-width: 767px){
+	div[class*='col-'][class*='height-']{
+		padding-top: @standard-space-mobile !important;
+		padding-bottom: @standard-space-mobile !important;
+	}
+}
