@@ -189,3 +189,89 @@
 		}
 	}
 }
+
+.process-stepper{
+	> li{
+		transition: all .3s ease;
+		display: inline-block;
+		float: left;
+		text-align: center;
+		position: relative;
+		&:before{
+			transition: all .3s ease;
+			content: '';
+			width: @base-line-height/2;
+			height: @base-line-height/2;
+			background: #ccc;
+			border-radius: 50%;
+			display: block;
+			margin: 0 auto;
+			margin-bottom: @base-line-height/2;
+		}
+		&:after{
+			transition: all .3s ease;
+			content: '';
+			width: 100%;
+			height: 2px;
+			position: absolute;
+			background: #ccc;
+			top: 5px;
+			left: 0;
+		}
+		&:first-child, &:last-child{
+			&:after{
+				width: 50%;
+			}
+		}
+		&:first-child{
+			&:after{
+				left: 50%;
+			}
+		}
+		&.active{
+			&:before, &:after{
+				background: @color-primary;
+			}
+		}
+		> span{
+			cursor: default;
+		}
+	}
+	&[data-process-steps="6"]{
+		> li{
+			width: 16.666666666666667%;
+		}
+	}
+	&[data-process-steps="5"]{
+		> li{
+			width: 20%;
+		}
+	}
+	&[data-process-steps="4"]{
+		> li{
+			width: 25%;
+		}
+	}
+	&[data-process-steps="3"]{
+		> li{
+			width: 33.33333333%;
+		}
+	}
+	&[data-process-steps="2"]{
+		> li{
+			width: 50%;
+		}
+	}
+}
+
+.bg--dark{
+	.process-stepper{
+		li{
+			&:not(.active){
+				&:before, &:after{
+					background: lighten(@color-dark, 20%)
+				}
+			}
+		}
+	}
+}

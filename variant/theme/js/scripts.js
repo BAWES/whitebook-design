@@ -1558,7 +1558,7 @@ mr = (function (mr, $, window, document){
         var delay = (typeof millisecondsDelay !== typeof undefined) ? (1*millisecondsDelay) : 0;
         
         setTimeout(function(){
-            modal.addClass('modal-active');
+            $(modal).addClass('modal-active');
         },delay);
     };
 
