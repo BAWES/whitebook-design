@@ -675,6 +675,7 @@ mr = (function (mr, $, window, document){
             } else {
                 input.prop('checked', false);
             }
+            input.trigger('change');
             return false;
         });
 
@@ -685,7 +686,7 @@ mr = (function (mr, $, window, document){
             var radio = $(this),
                 name  = radio.find('input[type=radio]').attr('name');
 
-            radio.closest('form').find('[type=radio][name='+name+']').each(function(){
+            radio.closest('form').find('[type=radio][name*='+name.replace(/\[[^\]]*\]/g, '')+']').each(function(){
                 $(this).parent().removeClass('checked');
             });
             radio.addClass('checked').find('input').click().prop('checked', true);
@@ -2275,6 +2276,8 @@ mr = (function (mr, $, window, document){
             		$(candidate).on('click',function(){
                         if(!candidate.hasClass('toggled-class')){
                             candidate.toggleClass('toggled-class');
+                        }else{
+                            candidate.removeClass('toggled-class');
                         }
             			$(toggleElement).toggleClass(toggleClass);
             			return false;
@@ -2439,6 +2442,30 @@ mr = (function (mr, $, window, document){
 	  };
 
 	  mr.video = {
+	      documentReady : documentReady        
+	  };
+
+	  mr.components.documentReady.push(documentReady);
+	  return mr;
+
+}(mr, jQuery, window, document));
+
+//////////////// Wizard
+mr = (function (mr, $, window, document){
+    "use strict";
+    
+	  var documentReady = function($){
+	      
+	    $(".wizard").steps({
+			headerTag: "h5",
+			bodyTag: "section",
+			transitionEffect: "slideLeft",
+			autoFocus: true
+		});
+			
+	  };
+
+	  mr.wizard = {
 	      documentReady : documentReady        
 	  };
 
