@@ -24,7 +24,7 @@
 	}
 }
 
-.masonry-filter-holder{
+.masonry-filter-holder:not(.masonry-filters--horizontal){
 	display: inline-block;
 	cursor: pointer;
 	height: @base-line-height*2;
@@ -111,7 +111,34 @@
 	}
 }
 
-.masonry-filter-container{
+.masonry-filters--horizontal{
+	display: inline-block;
+	.masonry__filters{
+		display: inline-block;
+		position: relative;
+		bottom: 20px;
+		margin-left: @base-line-height/2;
+	}
+	.masonry__filters ul li{
+		transition: all .3s ease;
+		cursor: pointer;
+		display: inline-block;
+		&:not(:last-child){
+			margin-right: @base-line-height;
+		}
+		&.active{
+			color: @color-primary;
+		}
+		&:not(.active){
+			opacity: .5;
+		}
+		&:hover{
+			opacity: 1;
+		}
+	}
+}
+
+.masonry-filter-holder{
 	+.masonry__container{
 		margin-top: @base-line-height*2;
 	}

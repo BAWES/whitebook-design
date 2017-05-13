@@ -1666,23 +1666,23 @@
             <!--end bar-->
         </div>
         <div class="main-container">
-            <section class="imagebg image--light cover bg--secondary">
+            <section class="imagebg image--light cover cover-blocks bg--secondary">
                 <div class="background-image-holder hidden-xs">
                     <img alt="background" src="img/promo-1.jpg" />
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6 col-md-5">
+                        <div class="col-sm-6 col-md-5 ">
                             <div>
-                                <h1>Element Index</h1>
+                                <h1>Masonry</h1>
                                 <p class="lead">
-                                    Easily create your own blocks using Stack's modular and customizable range of elements.
+                                    These modular elements can be readily used and customized across pages and in different blocks.
                                 </p>
                                 <hr class="short">
                                 <p>
-                                    Do you have an idea or suggestion for elements that
-                                    <br /> could improve Stack?
-                                    <a href="mailto:ask@mrare.co?subject=Stack Suggestion">Contact Us &rarr;</a>
+                                    Explore all of Stack's modular elements
+                                    <br /> at the
+                                    <a href="elements.html">Element Index Page &rarr;</a>
                                 </p>
                             </div>
                         </div>
@@ -1694,401 +1694,140 @@
             <section>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Accordions</h5>
+                        <div class="col-sm-5">
+                            <div class="boxed bg--secondary boxed--lg boxed--border">
+                                <h4>Masonry Layout</h4>
                                 <p>
-                                    Organise content easily with these collapsable accordion tabs
+                                    Stack uses the Isotope plugin to achieve the fitted 'masonry' grid effect. A masonry grid requires a parent
+                                    <strong>.masonry</strong> element with child
+                                    <strong>.masonry__container</strong> element. The masonry items are housed inside the
+                                    <strong>.masonry__container</strong> element, each inside its own
+                                    <strong>.masonry__item</strong> element.
                                 </p>
-                                <a href="elements-accordions.html">
-                                    Explore &rarr;
-                                </a>
+                                <pre>
+&lt;div class="masonry"&gt;
+	&lt;div class="masonry__container"&gt;
+		&lt;div class="masonry__item"&gt;
+			CONTENT
+		&lt;/div&gt;
+		&lt;div class="masonry__item"&gt;
+			CONTENT
+		&lt;/div&gt;
+		&lt;div class="masonry__item"&gt;
+			CONTENT
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
                             </div>
-                            <!--end feature-->
                         </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Boxes</h5>
-                                <p>
-                                    Distinguish repeatable features using boxed elements
-                                </p>
-                                <a href="elements-boxes.html">
-                                    Explore &rarr;
-                                </a>
+                        <div class="col-sm-7">
+                            <div class="masonry">
+                                <div class="masonry__container">
+                                    <div class="col-sm-6 masonry__item">
+                                        <img alt="pic" src="img/inner-3.jpg" />
+                                    </div>
+                                    <div class="col-sm-6 masonry__item">
+                                        <img alt="pic" src="img/work-1.jpg" />
+                                    </div>
+                                    <div class="col-sm-6 masonry__item">
+                                        <img alt="pic" src="img/inner-2.jpg" />
+                                    </div>
+                                    <div class="col-sm-6 masonry__item">
+                                        <img alt="pic" src="img/work-3.jpg" />
+                                    </div>
+                                </div>
                             </div>
-                            <!--end feature-->
                         </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Buttons</h5>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="boxed bg--secondary boxed--lg boxed--border">
+                                <h4>Masonry Filters</h4>
                                 <p>
-                                    Flexible button elements to suit a range of interactivity purposes
+                                    Add the
+                                    <strong>.masonry-filter-holder</strong> element with child
+                                    <strong>.masonry__filters</strong> element to add filters to the page.
                                 </p>
-                                <a href="elements-buttons.html">
-                                    Explore &rarr;
-                                </a>
+                                <p>
+                                    The filters will populate automatically based on the
+                                    <strong>data-masonry-filter</strong> attributes on each of the
+                                    <strong>.masonry__item</strong> elements.
+                                </p>
+                                <p>
+                                    Adjust the Masonry element in the following ways:
+                                </p>
+                                <ul class="bullets">
+                                    <li>
+                                        <strong>data-filter-all-text</strong> attribute on the .masonry__filters element changes the "Show All" text</li>
+                                    <li>
+                                        <strong>.masonry-filters--horizontal</strong> added to the .masonry-filter-holder element displays the filters in a horizontal list instead of the default dropdown.</li>
+                                </ul>
+                                <pre>
+&lt;div class="masonry-filter-holder"&gt;
+	&lt;div class="masonry__filters" data-filter-all-text="All Categories"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="masonry"&gt;
+	&lt;div class="masonry__container"&gt;
+		&lt;div class="masonry__item"&gt;
+			CONTENT
+		&lt;/div&gt;
+		&lt;div class="masonry__item"&gt;
+			CONTENT
+		&lt;/div&gt;
+		&lt;div class="masonry__item"&gt;
+			CONTENT
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
                             </div>
-                            <!--end feature-->
                         </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Colors</h5>
-                                <p>
-                                    Clever background and element classes to add color and life
-                                </p>
-                                <a href="elements-colors.html">
-                                    Explore &rarr;
-                                </a>
+                        <div class="col-sm-7">
+                            <div class="masonry">
+                                <div class="masonry-filter-holder">
+                                    <div class="masonry__filters" data-filter-all-text="All Categories"></div>
+                                </div>
+                                <div class="masonry__container">
+                                    <div class="col-sm-6 masonry__item" data-masonry-filter="Phone">
+                                        <img alt="pic" src="img/inner-3.jpg" />
+                                    </div>
+                                    <div class="col-sm-6 masonry__item" data-masonry-filter="Phone">
+                                        <img alt="pic" src="img/work-1.jpg" />
+                                    </div>
+                                    <div class="col-sm-6 masonry__item" data-masonry-filter="Interior">
+                                        <img alt="pic" src="img/inner-2.jpg" />
+                                    </div>
+                                    <div class="col-sm-6 masonry__item" data-masonry-filter="Interior">
+                                        <img alt="pic" src="img/work-3.jpg" />
+                                    </div>
+                                </div>
                             </div>
-                            <!--end feature-->
                         </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Countdown</h5>
-                                <p>
-                                    A customizable countdown timer for coming soon pages, product sales and more
-                                </p>
-                                <a href="elements-countdown.html">
-                                    Explore &rarr;
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            <section class="text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <div class="cta">
+                                <h2>Looking for styled masonry sections?</h2>
+                                <a class="btn btn--primary type--uppercase" href="sections-galleries.html">
+                                    <span class="btn__text">
+                                        View Gallery Sections
+                                    </span>
                                 </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Dropdowns</h5>
-                                <p>
-                                    Ideal for navigation menus, but usable anywhere in your pages
+                                <p class="type--fine-print">or try the
+                                    <a href="#">live builder &nearr;</a>
                                 </p>
-                                <a href="elements-dropdowns.html">
-                                    Explore &rarr;
-                                </a>
                             </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Form Elements</h5>
-                                <p>
-                                    Styling for all common elements to create beautiful multi-use forms
-                                </p>
-                                <a href="elements-form-elements.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Gradient Backgrounds</h5>
-                                <p>
-                                    A neat decorative effect that adds a sense of life and vibrancy
-                                </p>
-                                <a href="elements-gradient-backgrounds.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Grid System</h5>
-                                <p>
-                                    Based on Bootstrap column markup for fast, precise layout building
-                                </p>
-                                <a href="elements-grid.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Image Backgrounds</h5>
-                                <p>
-                                    Add covering images to any section with simple markup
-                                </p>
-                                <a href="elements-image-backgrounds.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Instagram</h5>
-                                <p>
-                                    Engage users by embedding a feed of photos directly from Instagram
-                                </p>
-                                <a href="elements-instagram.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Lightbox</h5>
-                                <p>
-                                    Create a screen-filling, navigatable gallery of showcase images
-                                </p>
-                                <a href="elements-lightbox.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Maps</h5>
-                                <p>
-                                    Google Maps API with data attributes to modify the map's appearance
-                                </p>
-                                <a href="elements-maps.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Masonry</h5>
-                                <p>
-                                    Using the Isotope plugin, achieve perfectly fitted masonry grids
-                                </p>
-                                <a href="elements-masonry.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Modals</h5>
-                                <p>
-                                    Ideal for sales promotions, newsletter signups and more
-                                </p>
-                                <a href="elements-modals.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Navigation Bars</h5>
-                                <p>
-                                    Create the perfect bar for your website or web app
-                                </p>
-                                <a href="elements-navigation.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Navigation In-Page</h5>
-                                <p>
-                                    A solution for navigating single pages
-                                </p>
-                                <a href="elements-navigation-inpage.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Navigation Sidebar</h5>
-                                <p>
-                                    Left or right column style sidebar navigation
-                                </p>
-                                <a href="elements-navigation-sidebar.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Notifications</h5>
-                                <p>
-                                    Useful for cookies notifications, site-wide promos and more
-                                </p>
-                                <a href="elements-notifications.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Parallax</h5>
-                                <p>
-                                    Silky smooth in-house developed parallax effect
-                                </p>
-                                <a href="elements-parallax.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Pricing</h5>
-                                <p>
-                                    Pricing options to suit a diverse range of product types
-                                </p>
-                                <a href="elements-pricing.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Radials</h5>
-                                <p>
-                                    Customisable radial progress charts for multiple uses
-                                </p>
-                                <a href="elements-radials.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Scrims &amp; Overlays</h5>
-                                <p>
-                                    Ensure content maintains readability on image background elements
-                                </p>
-                                <a href="elements-scrims-overlays.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Sliders</h5>
-                                <p>
-                                    Combining Flickity slider with a range of customizable data attributes
-                                </p>
-                                <a href="elements-sliders.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Tables</h5>
-                                <p>
-                                    Styling for common HTML5 table element types with simple class modifiers
-                                </p>
-                                <a href="elements-tables.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Tabs</h5>
-                                <p>
-                                    House discerete groups of content with a range of tabbed content styles
-                                </p>
-                                <a href="elements-tabs.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Tooltips</h5>
-                                <p>
-                                    Handy pop-up messages that appear when hovering on an element
-                                </p>
-                                <a href="elements-tooltips.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Twitter Feed</h5>
-                                <p>
-                                    Ultra-simple embeddable feeds, requiring only a Twitter account name
-                                </p>
-                                <a href="elements-twitter.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Typed Text</h5>
-                                <p>
-                                    A neat decorative effect that simulates the typing of a group of strings
-                                </p>
-                                <a href="elements-typed-text.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Typography</h5>
-                                <p>
-                                    Responsive type system that scales appropriately for all devices
-                                </p>
-                                <a href="elements-typography.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Video Backgrounds</h5>
-                                <p>
-                                    Using local or Youtube videos as a background for any element
-                                </p>
-                                <a href="elements-video-background.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Video Inline</h5>
-                                <p>
-                                    Attractive inline video covers for maintaining brand consistency
-                                </p>
-                                <a href="elements-video-inline.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="feature feature-1 boxed boxed--border">
-                                <h5>Wizards</h5>
-                                <p>
-                                    Onboarding, user-signups and more with the jQuery Steps plugin
-                                </p>
-                                <a href="elements-wizards.html">
-                                    Explore &rarr;
-                                </a>
-                            </div>
-                            <!--end feature-->
                         </div>
                     </div>
                     <!--end of row-->

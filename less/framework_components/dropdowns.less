@@ -140,3 +140,26 @@ body:not(.dropdowns--hover){
 		}
 	}
 }
+
+@media all and (max-width: 767px){
+	.dropdown--hover:hover{
+		> .dropdown__container{
+			display: block !important;
+		}
+	}
+	body.dropdowns--hover{
+		.dropdown:hover{
+			> .dropdown__container{
+				display: block !important;
+			}
+		}
+	}
+	.dropdown{
+		&.dropdown--absolute{
+			.dropdown__container{
+				position: absolute;
+			}
+		}
+	}
+}
+

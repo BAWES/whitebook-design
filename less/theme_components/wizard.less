@@ -1,5 +1,13 @@
 /*! -- Stack Wizard -- */
 
+.wizard{
+	transition: opacity .3s ease;
+	opacity: 0;
+	&.active{
+		opacity: 1;
+	}
+}
+
 .wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active{
 	background: @color-primary;
 	transition: all .3s ease;
@@ -8,6 +16,7 @@
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 1px;
+	color: #fff;
 }
 
 .wizard > .steps .current a, .wizard > .steps .current a:hover, .wizard > .steps .current a:active{
@@ -126,6 +135,31 @@
 			top: 50%;
 			transform: translateY(-50%);
 			-wekbit-transform: translateY(-50%);
+		}
+	}
+}
+
+.wizard{
+	&.bg--white{
+		background: none !important;
+		> .content{
+			background: #fff;
+		}
+	}
+	> .content{
+		img{
+			max-height: 240px;
+		}
+	}
+}
+
+@media all and (max-width: 767px){
+	.wizard{
+		> .content{
+			img{
+				max-height: 120px;
+				margin-bottom: @base-line-height/2;
+			}
 		}
 	}
 }

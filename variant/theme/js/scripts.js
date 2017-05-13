@@ -195,34 +195,54 @@ mr = (function (mr, $, window, document){
 mr = (function (mr, $, window, document){
     "use strict";
 
+    
     mr.scroll           = {};
+    var raf             = window.requestAnimationFrame || 
+                          window.mozRequestAnimationFrame || 
+                          window.webkitRequestAnimationFrame ||
+                          window.msRequestAnimationFrame;
     mr.scroll.listeners = [];
+    mr.scroll.busy      = false;
     mr.scroll.y         = 0;
     mr.scroll.x         = 0;
-
-     var documentReady = function($){
-        
-        // Check if scroll-assist is on
-        if($('body').hasClass('scroll-assist')){
-            mr.scroll.assisted = true;
-        }
+    
+    var documentReady = function($){
 
         //////////////// Capture Scroll Event and fire scroll function
-        
-        addEventListener('scroll', function(evt) {        
-                //if(!mr.scroll.assisted){
-                    window.mr.scroll.y = window.pageYOffset;
-                //}
-                window.mr.scroll.update(evt);
-        }, false);
+        jQuery(window).off('scroll.mr');    
+        jQuery(window).on('scroll.mr', function(evt) {
+                if(mr.scroll.busy === false){
+                    
+                    mr.scroll.busy = true;
+                    raf(function(evt){  
+                        mr.scroll.update(evt);
+                    });
+                    
+                }
+                if(evt.stopPropagation){
+                    evt.stopPropagation();
+                }
+        });
         
     };
 
     mr.scroll.update = function(event){
+        
         // Loop through all mr scroll listeners
-        for (var i = 0, l = mr.scroll.listeners.length; i < l; i++) {
-           mr.scroll.listeners[i](event);
+        var parallax = typeof window.mr_parallax !== typeof undefined ? true : false;
+        mr.scroll.y = (parallax ? mr_parallax.mr_getScrollPosition() : window.pageYOffset);
+        mr.scroll.busy = false;
+        if(parallax){
+            mr_parallax.mr_parallaxBackground();
         }
+
+
+        if(mr.scroll.listeners.length > 0){
+            for (var i = 0, l = mr.scroll.listeners.length; i < l; i++) {
+               mr.scroll.listeners[i](event);
+            }
+        }
+        
     };
 
     mr.scroll.documentReady = documentReady;
@@ -576,11 +596,6 @@ mr = (function (mr, $, window, document){
         }else{
             repositionDropdownsRtl($);
         }
-        
-        jQuery(window).resize(function(){
-            //repositionDropdowns($);
-        });
-
     };
 
     function repositionDropdowns($){
@@ -1570,7 +1585,7 @@ mr = (function (mr, $, window, document){
 
         // If this modal requires to be closed permanently using a cookie, set the cookie now.
         if(typeof modal.attr('data-cookie') !== typeof undefined){
-            mr.cookies.setItem(modal.attr('data-cookie'), "true", Infinity);
+            mr.cookies.setItem(modal.attr('data-cookie'), "true", Infinity, '/');
         }
 
         modal.removeClass('modal-active');
@@ -1906,7 +1921,7 @@ mr = (function (mr, $, window, document){
 
         // If this notification requires to be closed permanently using a cookie, set the cookie now.
         if(typeof notification.attr('data-cookie') !== typeof undefined){
-            mr.cookies.setItem(notification.attr('data-cookie'), "true", Infinity);
+            mr.cookies.setItem(notification.attr('data-cookie'), "true", Infinity, '/');
         }
     };
 
@@ -2455,12 +2470,16 @@ mr = (function (mr, $, window, document){
     "use strict";
     
 	  var documentReady = function($){
-	      
-	    $(".wizard").steps({
-			headerTag: "h5",
-			bodyTag: "section",
-			transitionEffect: "slideLeft",
-			autoFocus: true
+
+		$('.wizard').each(function(){
+			var wizard = jQuery(this);
+			wizard.steps({
+				headerTag: "h5",
+				bodyTag: "section",
+				transitionEffect: "slideLeft",
+				autoFocus: true
+			});
+			wizard.addClass('active');
 		});
 			
 	  };

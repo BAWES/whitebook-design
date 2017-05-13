@@ -86,9 +86,28 @@
 				display: none;
 			}
 		}
+		&.dropdown--hover{
+			&:hover{
+				> .dropdown__container{
+					display: block;
+				}
+			}
+		}
 	}
 	.social-list{
 		margin-bottom: @base-line-height/2;
+	}
+}
+
+body.dropdowns--hover{
+	.nav-sidebar-column{
+		.dropdown{
+			&:hover{
+				> .dropdown__container{
+					display: block;
+				}
+			}
+		}
 	}
 }
 
