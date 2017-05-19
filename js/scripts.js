@@ -402,6 +402,26 @@ mr = (function (mr, $, window, document){
 }(mr, jQuery, window, document));
 
 
+//////////////// Alerts
+mr = (function (mr, $, window, document){
+    "use strict";
+    
+    var documentReady = function($){
+        $('.alert__close').on('click touchstart', function(){
+            jQuery(this).closest('.alert').addClass('alert--dismissed');
+        });
+    };
+
+    mr.alerts = {
+        documentReady : documentReady        
+    };
+
+    mr.components.documentReady.push(documentReady);
+    return mr;
+
+}(mr, jQuery, window, document));
+
+
 //////////////// Backgrounds
 mr = (function (mr, $, window, document){
     "use strict";
@@ -586,25 +606,33 @@ mr = (function (mr, $, window, document){
             // Append a container to the body for measuring purposes
             jQuery('body').append('<div class="container containerMeasure" style="opacity:0;pointer-events:none;"></div>');
 
+            
+        
+
+            // Menu dropdown positioning
+            if(rtl === false){
+                repositionDropdowns($);
+                jQuery(window).on('resize', function(){repositionDropdowns($);});
+            }else{
+                repositionDropdownsRtl($);
+                jQuery(window).on('resize', function(){repositionDropdownsRtl($);});
+            }
+
             mr.dropdowns.done = true;
-        }
-
-         //////////////// Menu dropdown positioning
-
-        if(rtl === false){
-            repositionDropdowns($);
-        }else{
-            repositionDropdownsRtl($);
         }
     };
 
     function repositionDropdowns($){
         $('.dropdown__container').each(function(){
-            var container       = jQuery(this),
-                containerOffset = container.offset().left,
-                masterOffset    = jQuery('.containerMeasure').offset().left,
-                menuItem        = container.closest('.dropdown').offset().left,
-                content         = '';
+            var container, containerOffset, masterOffset, menuItem, content;
+
+                jQuery(this).css('left', '');
+
+                container       = jQuery(this);  
+                containerOffset = container.offset().left;
+                masterOffset    = jQuery('.containerMeasure').offset().left;
+                menuItem        = container.closest('.dropdown').offset().left;
+                content         = null;
                 
                 container.css('left',((-containerOffset)+(masterOffset)));
 
@@ -615,11 +643,13 @@ mr = (function (mr, $, window, document){
                 
         });
         $('.dropdown__content').each(function(){
-            var dropdown    = jQuery(this),
-                offset      = dropdown.offset().left,
-                width       = dropdown.outerWidth(true),
-                offsetRight = offset + width,
-                winWidth    = jQuery(window).outerWidth(true),
+            var dropdown, offset, width, offsetRight, winWidth, leftCorrect;
+
+                dropdown    = jQuery(this);
+                offset      = dropdown.offset().left;
+                width       = dropdown.outerWidth(true);
+                offsetRight = offset + width;
+                winWidth    = jQuery(window).outerWidth(true);
                 leftCorrect = jQuery('.containerMeasure').outerWidth() - width;
 
             if(offsetRight > winWidth){
@@ -634,11 +664,15 @@ mr = (function (mr, $, window, document){
         var windowWidth = jQuery(window).width();
 
         $('.dropdown__container').each(function(){
-            var container       = jQuery(this),
-                containerOffset = windowWidth - (container.offset().left + container.outerWidth(true)),
-                masterOffset    = jQuery('.containerMeasure').offset().left,
-                menuItem        = windowWidth - (container.closest('.dropdown').offset().left + container.closest('.dropdown').outerWidth(true)),
-                content         = '';
+            var container, containerOffset, masterOffset, menuItem, content;
+ 
+                jQuery(this).css('left', '');
+
+                container   = jQuery(this);
+                containerOffset = windowWidth - (container.offset().left + container.outerWidth(true));
+                masterOffset    = jQuery('.containerMeasure').offset().left;
+                menuItem        = windowWidth - (container.closest('.dropdown').offset().left + container.closest('.dropdown').outerWidth(true));
+                content         = null;
                 
                 container.css('right',((-containerOffset)+(masterOffset)));
 
@@ -648,11 +682,13 @@ mr = (function (mr, $, window, document){
                 }
         });
         $('.dropdown__content').each(function(){
-            var dropdown    = jQuery(this),
-                offset      = windowWidth - (dropdown.offset().left + dropdown.outerWidth(true)),
-                width       = dropdown.outerWidth(true),
-                offsetRight = offset + width,
-                winWidth    = jQuery(window).outerWidth(true),
+            var dropdown, offset, width, offsetRight, winWidth, rightCorrect;
+
+                dropdown    = jQuery(this);
+                offset      = windowWidth - (dropdown.offset().left + dropdown.outerWidth(true));
+                width       = dropdown.outerWidth(true);
+                offsetRight = offset + width;
+                winWidth    = jQuery(window).outerWidth(true);
                 rightCorrect = jQuery('.containerMeasure').outerWidth() - width;
 
             if(offsetRight > winWidth){

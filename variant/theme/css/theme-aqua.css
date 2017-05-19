@@ -39,7 +39,8 @@
 /**! 37. Spacing **/
 /**! 38. Boxed Layout **/
 /**! 39. Wizard **/
-/**! 40. Theme Overrides **/
+/**! 40. Alerts **/
+/**! 41. Theme Overrides **/
 /**!**************/
 /**!**************/
 /**!**************/
@@ -550,9 +551,8 @@ img {
   background-size: cover !important;
   background-position: 50% 50% !important;
   z-index: 0;
-  transition: 0.3s linear;
-  -webkit-transition: 0.3s linear;
-  -moz-transition: 0.3s linear;
+  transition: opacity .3s linear;
+  -webkit-transition: opacity .3s linear;
   opacity: 0;
   background: #252525;
 }
@@ -2783,6 +2783,9 @@ a {
 .bg--error {
   background: #e23636;
 }
+.bg--success {
+  background: #4ebf56;
+}
 .imagebg:not(.image--light) .bg--white p,
 .imagebg:not(.image--light) .bg--white span,
 .imagebg:not(.image--light) .bg--white ul,
@@ -3582,7 +3585,52 @@ section.unpad--top {
   opacity: .3;
   cursor: not-allowed;
 }
-/**! 40. Theme Overrides **/
+/**! 40. Alerts **/
+.alert {
+  overflow: hidden;
+  border: 1px solid #e6e6e6;
+  padding: 0.92857143em;
+}
+.alert .alert__body,
+.alert .alert__close {
+  display: inline-block;
+  user-select: none;
+}
+.alert .alert__body {
+  float: left;
+}
+.alert .alert__close {
+  float: right;
+  cursor: pointer;
+}
+.alert.bg--error {
+  background: #fce8e8;
+  border-color: #e23636;
+}
+.alert.bg--error .alert__close {
+  color: #e23636;
+}
+.alert.bg--success {
+  background: #e4f5e5;
+  border-color: #4ebf56;
+}
+.alert.bg--success .alert__close {
+  color: #4ebf56;
+}
+.alert.bg--primary {
+  background: #ffffff;
+  border-color: #7adfbb;
+}
+.alert.bg--primary .alert__body > span {
+  color: #666666;
+}
+.alert.bg--primary .alert__close {
+  color: #7adfbb;
+}
+.alert.alert--dismissed {
+  display: none;
+}
+/**! 41. Theme Overrides **/
 /*! -- Stack Customizers -- */
 .box-shadow {
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.04);
@@ -4673,6 +4721,22 @@ section.parallax .row .background-image-holder {
   .bar-4 .logo-dark {
     margin-bottom: 1.85714286em;
   }
+  .bar.bg--dark {
+    background: #252525;
+  }
+  .bar.bg--dark .hamburger-toggle i {
+    color: #fff;
+  }
+}
+/*! -- Stack Alerts -- */
+.alert {
+  border-radius: 6px;
+}
+.alert:not(:last-child) {
+  margin-bottom: 1.85714286em;
+}
+.alert .alert__close {
+  font-size: 1.35714286em;
 }
 /*! -- Stack Menu Toggle -- */
 .menu-toggle {
@@ -5082,6 +5146,11 @@ body.dropdowns--hover .nav-sidebar-column .dropdown:hover > .dropdown__container
 @media all and (max-width: 990px) {
   .menu-vertical .dropdown.dropdown--active:after {
     opacity: 0;
+  }
+}
+@media all and (min-width: 991px) {
+  .dropdown .dropdown__container:before {
+    height: 18px;
   }
 }
 /*! -- Stack Twitter Feeds -- */
@@ -6741,7 +6810,11 @@ span + .typed-text.h1 {
 .bg--dark input,
 .imagebg:not(.image--light) input,
 .bg--dark textarea,
-.imagebg:not(.image--light) textarea {
+.imagebg:not(.image--light) textarea,
+.bg--dark select,
+.imagebg:not(.image--light) select,
+.bg--dark .input-select:after,
+.imagebg:not(.image--light) .input-select:after {
   color: #666666;
 }
 .bg--dark label,

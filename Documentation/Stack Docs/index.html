@@ -51,6 +51,9 @@
                                 <a class="navigation-link component-link" href="#accordions" data-slug="accordions">Accordions</a>
                             </li>
                             <li>
+                                <a class="navigation-link component-link" href="#alerts" data-slug="alerts">Alerts</a>
+                            </li>
+                            <li>
                                 <a class="navigation-link component-link" href="#boxed-layout" data-slug="boxed-layout">Boxed Layout</a>
                             </li>
                             <li>
@@ -71,13 +74,13 @@
                             <li>
                                 <a class="navigation-link component-link" href="#formssmtp" data-slug="formssmtp">Forms - SMTP Server</a>
                             </li>
-                            <li>
-                                <a class="navigation-link component-link" href="#formsphp" data-slug="formsphp">Forms - Native PHP mail()</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
                         <ul>
+                            <li>
+                                <a class="navigation-link component-link" href="#formsphp" data-slug="formsphp">Forms - Native PHP mail()</a>
+                            </li>
                             <li>
                                 <a class="navigation-link component-link" href="#formsvalidation" data-slug="formsvalidation">Forms - Validation</a>
                             </li>
@@ -357,6 +360,50 @@
                             <span>See also:</span>
                             <a href="#tabs">Tabs</a>
                             <a href="#buttons">Buttons</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <a id="alerts"></a>
+        <section class="docs-module" data-slug="alerts">
+            <div class="deactivate"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <h2 class="section-title">Alerts</h2>
+                        <h4>Description</h4>
+                        <div>
+                            <p>Alerts are dismissable elements placed inline with the page content to notify the user of something. </p>
+                        </div>
+                        <hr>
+                        <h4>Markup</h4>
+                        <div>
+                            <p>The alert element is structured using a <code>&lt;div&gt;</code> with class <code>.alert</code> with a child <code>.alert__body</code> which houses the contents of the alert ie. the text and an element with class <code>.alert__close</code> which, when clicked - dismisses the alert.</p>
+                            <pre><code class="lang-html">&lt;div class=&quot;alert&quot;&gt;
+  &lt;div class=&quot;alert__body&quot;&gt;
+    &lt;span&gt;Here is the alert text&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;alert__close&quot;&gt;
+    &amp;times;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                        </div>
+                        <hr>
+                        <h4>Class Modifiers</h4>
+                        <div>
+                            <p>You can modify the alert by adding the following classes to the top level <code>.alert</code> element.</p>
+                            <ul>
+                                <li><code>.bg--error</code> - Changes the background to the theme&#39;s error colour</li>
+                                <li><code>.bg--success</code> - Changes the background to the theme&#39;s success colour</li>
+                                <li><code>.bg--primary</code> - Changes the background to the theme&#39;s primary colour</li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div class="boxed related-items">
+                            <span>See also:</span>
+                            <a href="#notifications">Notifications</a>
                         </div>
                     </div>
                 </div>
