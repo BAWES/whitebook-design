@@ -1688,7 +1688,7 @@
                         <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                             <div class="row">
                                 <div class="boxed boxed--border">
-                                    <form class="text-left form-email" data-success="Thanks for your enquiry, we'll be in touch shortly." data-error="Please fill in all fields correctly.">
+                                    <form class="text-left form-email" data-success="Thanks for your enquiry, we'll be in touch shortly." data-error="Please fill in all fields correctly." data-recaptcha-sitekey="6LewhCIUAAAAACSwFvBDhgtTbw6EnW6e9dip8o2u" data-recaptcha-theme="light">
                                         <div class="col-sm-6">
                                             <label>Name:</label>
                                             <input type="text" name="name" class="validate-required" />
@@ -1763,6 +1763,9 @@
                                                 <div class="inner"></div>
                                                 <input type="radio" name="budget" value="10kplus" class="validate-required" />
                                             </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-sm-offset-2 boxed">
+                                            <div class="recaptcha"></div>
                                         </div>
                                         <div class="col-sm-12 boxed">
                                             <button type="submit" class="btn btn--primary type--uppercase">Submit Planner</button>

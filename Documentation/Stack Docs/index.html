@@ -88,6 +88,9 @@
                                 <a class="navigation-link component-link" href="#formsredirect" data-slug="formsredirect">Forms - Redirect</a>
                             </li>
                             <li>
+                                <a class="navigation-link component-link" href="#formsrecaptcha" data-slug="formsrecaptcha">Forms - Google reCaptcha</a>
+                            </li>
+                            <li>
                                 <a class="navigation-link component-link" href="#gradientbackgrounds" data-slug="gradientbackgrounds">Gradient Backgrounds</a>
                             </li>
                             <li>
@@ -102,13 +105,13 @@
                             <li>
                                 <a class="navigation-link component-link" href="#less-files" data-slug="less-files">LESS Files</a>
                             </li>
-                            <li>
-                                <a class="navigation-link component-link" href="#lightbox" data-slug="lightbox">Lightbox</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
                         <ul>
+                            <li>
+                                <a class="navigation-link component-link" href="#lightbox" data-slug="lightbox">Lightbox</a>
+                            </li>
                             <li>
                                 <a class="navigation-link component-link" href="#maps" data-slug="maps">Google API Maps</a>
                             </li>
@@ -761,6 +764,66 @@ $outgoingServerSecurity     = &#39;tls&#39;;                // Options: &#39;ssl
                             <p>The address given in the data-success-redirect attribute should be a fully formed URL including
                                 <em>http://</em> to ensure maximum compatibility.</p>
                             <p>If the attribute data-success-redirect is left blank, or not included in the form tag, the default behaviour will occur (green box success message appears).</p>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <a id="formsrecaptcha"></a>
+        <section class="docs-module" data-slug="formsrecaptcha">
+            <div class="deactivate"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <h2 class="section-title">Forms - Google reCaptcha</h2>
+                        <h4>Description</h4>
+                        <div>
+                            <p>Stack supports Google&#39;s reCaptcha v2 to display the &quot;I am not a robot&quot; checkbox in your forms.</p>
+                            <p>How to implement in 3 easy steps:</p>
+                            <ul>
+                                <li>Register your site to sign up for a recaptcha key pair on the
+                                    <a href="https://www.google.com/recaptcha/admin">recaptcha admin page</a>.</li>
+                                <li>Add the <code>data-recaptcha-sitekey</code> attribute to your enquiry form with your
+                                    <em>site key</em> as the value.</li>
+                                <li>Edit <code>mail.php</code> in the mail folder of your site and paste your
+                                    <em>secret key</em> into the captcha settings.</li>
+                            </ul>
+                            <pre><code class="lang-html">&lt;form class=&quot;form-email&quot; data-recaptcha-sitekey=&quot;pasteyoursitekeyinhere&quot; data-success=&quot;Thanks for your submission, we will be in touch shortly.&quot; data-error=&quot;Please fill all fields correctly.&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;validate-required&quot; name=&quot;name&quot; placeholder=&quot;Your Name&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;validate-required validate-email&quot; name=&quot;email&quot; placeholder=&quot;Email Address&quot;&gt;
+    &lt;textarea class=&quot;validate-required&quot; name=&quot;message&quot; rows=&quot;4&quot; placeholder=&quot;Message&quot;&gt;&lt;/textarea&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Send Message&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+                            <p>Many captcha widgets may be added to a page, but only one captcha widget should be added to each form.</p>
+                        </div>
+                        <hr>
+                        <h4>Placement of the widget</h4>
+                        <div>
+                            <p>Using the quick method described above, the captcha will be automatically appended directly before the form&#39;s existing submit button on page load.</p>
+                            <p>If you need to specify the width or placement of the captcha in your form, you may skip the automatic placement by adding your own div with class <code>recaptcha</code> to the form manually. When the script finds a <code>div.recaptcha</code>, the reCaptcha widget will be rendered inside.</p>
+                            <p>The rendering of the widget is handled by Google&#39;s javascript, so to position the widget you must use a wrapping <code>div</code> which can use Bootstrap&#39;s column classes for width and offset.</p>
+                            <pre><code class="lang-html">&lt;form class=&quot;form-email&quot; data-recaptcha-sitekey=&quot;pasteyoursitekeyinhere&quot; data-success=&quot;Thanks for your submission, we will be in touch shortly.&quot; data-error=&quot;Please fill all fields correctly.&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;validate-required&quot; name=&quot;name&quot; placeholder=&quot;Your Name&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;validate-required validate-email&quot; name=&quot;email&quot; placeholder=&quot;Email Address&quot;&gt;
+    &lt;textarea class=&quot;validate-required&quot; name=&quot;message&quot; rows=&quot;4&quot; placeholder=&quot;Message&quot;&gt;&lt;/textarea&gt;
+    &lt;div class=&quot;col-xs-12&quot;&gt;
+        &lt;div class=&quot;recaptcha&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Send Message&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+                        </div>
+                        <hr>
+                        <h4>Size and Colour Scheme</h4>
+                        <div>
+                            <p>Google allows each recaptcha widget to be given basic style tweaks by way of size (<code>compact</code> or <code>normal</code>) and colour (<code>light</code> or <code>dark</code>) attributes. </p>
+                            <p>You define these options on your form element, then the Stack script passes these values to the reCaptcha render script on page load.</p>
+                            <ul>
+                                <li>To set size, use the <code>data-recaptcha-size</code> attribute. Options are <code>compact</code> and <code>normal</code>. Default if none is provided: <code>normal</code>.</li>
+                                <li>To set colour, use the <code>data-recaptcha-theme</code> attribute. Options are <code>light</code> and <code>dark</code>. Default if none is provided: <code>light</code>.</li>
+                            </ul>
                         </div>
                         <hr>
                     </div>
