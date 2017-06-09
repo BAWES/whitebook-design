@@ -119,6 +119,25 @@
 	}
 }
 
+.bg--primary{
+	.tabs{
+		border-color: #fff;
+		li{
+			&.active{
+				.tab__title{
+					color: #fff;
+					span{
+						color: #fff;
+					}
+				}
+			}
+			&:not(:last-child){
+				border-color: #fff;
+			}
+		}
+	}
+}
+
 @media all and (min-width: 768px){
 	.tabs{
 		&.tabs--spaced{

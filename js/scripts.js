@@ -59,6 +59,14 @@ mr = (function (mr, $, window, document){
         $('.update-year').text(year);
     };
 
+    mr.util.windowLoad = function($){
+        $('[data-delay-src]').each(function(){
+            var $el = $(this);
+            $el.attr('src', $el.attr('data-delay-src'));
+            $el.removeAttr('data-delay-src');
+        });
+    };
+
     mr.util.getURLParameter = function(name) {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [undefined, ""])[1].replace(/\+/g, '%20')) || null;
     };
@@ -170,6 +178,7 @@ mr = (function (mr, $, window, document){
     };
 
     mr.components.documentReady.push(mr.util.documentReady);
+    mr.components.windowLoad.push(mr.util.windowLoad);
     return mr;
 
 }(mr, jQuery, window, document));
@@ -567,7 +576,7 @@ mr = (function (mr, $, window, document){
         }
     };
 
-    mr.components.documentReady.push(documentReady);
+    mr.components.documentReadyDeferred.push(documentReady);
     return mr;
 
 }(mr, jQuery, window, document));
@@ -722,8 +731,13 @@ mr = (function (mr, $, window, document){
         
         //////////////// Checkbox Inputs
 
-        $('.input-checkbox').on('click', function() {
+         $('.input-checkbox').off('click.mr').on('click.mr', function(e) {
             var checkbox = $(this);
+
+            if ($(e.target).is('input')){return;}
+
+       
+
             checkbox.toggleClass('checked');
             
             var input = checkbox.find('input');
@@ -738,12 +752,15 @@ mr = (function (mr, $, window, document){
 
         //////////////// Radio Buttons
 
-        $('.input-radio').on('click', function(e) {
+        $('.input-radio').off('click.mr').on('click.mr', function(e) {
+
             if ($(e.target).is('input')){return;}
             var radio = $(this),
                 name  = radio.find('input[type=radio]').attr('name');
 
-            radio.closest('form').find('[type=radio][name*='+name.replace(/\[[^\]]*\]/g, '')+']').each(function(){
+            console.log(jQuery.escapeSelector('[type=radio][name*='+name+']'));
+
+            radio.closest('form').find('[type=radio][name*="'+name+'"]').each(function(){
                 $(this).parent().removeClass('checked');
             });
             radio.addClass('checked').find('input').click().prop('checked', true);
@@ -752,7 +769,7 @@ mr = (function (mr, $, window, document){
 
         //////////////// Number Inputs
 
-        $('.input-number__controls > span').on('click',function(){
+        $('.input-number__controls > span').off('click.mr').on('click.mr',function(){
             var control = jQuery(this),
                 parent   = control.closest('.input-number'),
                 input    = parent.find('input[type="number"]'),
@@ -779,7 +796,7 @@ mr = (function (mr, $, window, document){
 
         //////////////// File Uploads
 
-        $('.input-file .btn').on('click',function(){
+        $('.input-file .btn').off('click.mr').on('click.mr',function(){
             $(this).siblings('input').trigger('click');
             return false;
         });
@@ -2286,15 +2303,20 @@ mr = (function (mr, $, window, document){
     mr.smoothscroll.init = function(){
         mr.smoothscroll.sections = [];
 
+       
+
         $('a.inner-link').each(function(){
             var sectionObject = {},
                 link          = $(this),
                 href          = link.attr('href'),
-                validLink     = new RegExp('^#[^\n^\s^\#^\.]+$');
-            
+                validLink     = new RegExp('^#[^\r\n\t\f\v\#\.]+$','gm');
+                            
             if(validLink.test(href)){
-
+                
                 if($('section'+href).length){
+
+                    console.log('Found a section with '+href);
+
                     sectionObject.id     = href;
                     sectionObject.top = Math.round($(href).offset().top);
                     sectionObject.height = Math.round($(href).outerHeight());
