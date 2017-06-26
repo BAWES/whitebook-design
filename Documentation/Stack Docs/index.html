@@ -65,10 +65,6 @@
                             <li>
                                 <a class="navigation-link component-link" href="#colour-schemes" data-slug="colour-schemes">Colour Schemes</a>
                             </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
                             <li>
                                 <a class="navigation-link component-link" href="#countdown" data-slug="countdown">Countdown Timer</a>
                             </li>
@@ -78,6 +74,10 @@
                             <li>
                                 <a class="navigation-link component-link" href="#formssmtp" data-slug="formssmtp">Forms - SMTP Server</a>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
                             <li>
                                 <a class="navigation-link component-link" href="#formsphp" data-slug="formsphp">Forms - Native PHP mail()</a>
                             </li>
@@ -87,10 +87,6 @@
                             <li>
                                 <a class="navigation-link component-link" href="#formsredirect" data-slug="formsredirect">Forms - Redirect</a>
                             </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
                             <li>
                                 <a class="navigation-link component-link" href="#formsrecaptcha" data-slug="formsrecaptcha">Forms - Google reCaptcha</a>
                             </li>
@@ -131,10 +127,6 @@
                             <li>
                                 <a class="navigation-link component-link" href="#notifications" data-slug="notifications">Notifications</a>
                             </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
                             <li>
                                 <a class="navigation-link component-link" href="#parallax" data-slug="parallax">Parallax Backgrounds</a>
                             </li>
@@ -144,6 +136,10 @@
                             <li>
                                 <a class="navigation-link component-link" href="#spacing-helpers" data-slug="spacing-helpers">Spacing - Helpers</a>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
                             <li>
                                 <a class="navigation-link component-link" href="#spacing-sections" data-slug="spacing-sections">Spacing - Sections</a>
                             </li>
@@ -153,10 +149,6 @@
                             <li>
                                 <a class="navigation-link component-link" href="#rtl" data-slug="rtl">RTL (Right to Left Direction)</a>
                             </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
                             <li>
                                 <a class="navigation-link component-link" href="#navigation-in-page" data-slug="navigation-in-page">In Page Navigation</a>
                             </li>
@@ -365,6 +357,40 @@
                             <ul>
                                 <li><code>accordion--one-open</code> - Changes behaviour so only one panel can ever be active at once.</li>
                             </ul>
+                        </div>
+                        <hr>
+                        <h4>Linking to an accordion panel using an ID</h4>
+                        <div>
+                            <p>By adding an ID attribute to any accordion panel&#39;s <code>.accordion__title</code> element, the panel can be activated in a number of ways. The example below has had the ID <code>panel1</code> added to the <code>div.accordion__title</code> element.</p>
+                            <pre><code class="lang-html"> &lt;ul class=&quot;accordion&quot;&gt;
+    &lt;li&gt;
+        &lt;div class=&quot;accordion__title&quot; id=&quot;panel1&quot;&gt;
+            &lt;span&gt;Title&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;accordion__content&quot;&gt;
+            ...
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                            <ul>
+                                <li>Open the accordion to a specific panel on page load by adding a hash with the panel&#39;s ID to the end of the URL bar:
+                                    <code>http://your-site.com/contact.html#panel1</code></li>
+                                <li>Clicking a link whose href contains the panel&#39;s ID will open the panel and scroll to it.
+                                    <code>&lt;a href=&quot;#panel1&quot;&gt;Open Panel 1&lt;/a&gt;</code></li>
+                                <li><code>mr.panels.activatePanel(&#39;#tab1&#39;)</code> can be called to programatically open an accordion panel. This function accepts the desired <code>.accordion__title</code> element as a JS element, a jQuery element, or a selector.</li>
+                            </ul>
+                            <p>Remember: all IDs on the page must be unique.</p>
+                        </div>
+                        <hr>
+                        <h4>Events</h4>
+                        <div>
+                            <p>An event is fired from the panel&#39;s parent <code>&lt;li&gt;</code> element each time a panel is opened or closed.</p>
+                            <ul>
+                                <li><code>panelOpened.accordions.mr</code> fires on panel openening</li>
+                                <li><code>panelClosed.accordions.mr</code> fires on panel closing</li>
+                            </ul>
+                            <p>Events are fired for both native javascript and jQuery handlers.</p>
                         </div>
                         <hr>
                         <div class="boxed related-items">
@@ -1277,6 +1303,21 @@ $outgoingServerSecurity     = &#39;tls&#39;;                // Options: &#39;ssl
                             </ul>
                         </div>
                         <hr>
+                        <h4>Methods</h4>
+                        <div>
+                            <p>You may wish to add items to a masonry set on the fly, updating the layout as you go. We&#39;ve provided some functions to update the masonry layout and filters after your new items have been added.</p>
+                            <p><code>mr.masonry.updateFilters()</code> Update the filters of a filterable masonry set.</p>
+                            <ul>
+                                <li>Accepts one optional argument of either a selector, element, or jQuery element/collection. The supplied element/s must be a Stack <code>.masonry</code> element.</li>
+                                <li>Default behaviour when no argument is supplied: updates filters on all <code>.masonry</code> elements.</li>
+                            </ul>
+                            <p><code>mr.masonry.updateLayout()</code> Re-layout / update the layout of a masonry set or sets.</p>
+                            <ul>
+                                <li>Accepts one optional argument of either a selector, element, or jQuery element/collection to target specific masonry set or sets. The supplied element/s must be a Stack <code>.masonry</code> element.</li>
+                                <li>Default behaviour when no argument is supplied: updates layout on all <code>.masonry</code> elements.</li>
+                            </ul>
+                        </div>
+                        <hr>
                     </div>
                 </div>
             </div>
@@ -1838,6 +1879,39 @@ mr.modals.showModal(modal);
                             <ul>
                                 <li><code>active</code> - Add this class to a <code>&lt;li&gt;</code> parent to make it open by default (as seen in above example).</li>
                             </ul>
+                        </div>
+                        <hr>
+                        <h4>Linking to a tab using an ID</h4>
+                        <div>
+                            <p>By adding an ID attribute to any tab&#39;s parent <code>&lt;li&gt;</code> element, the tab can be activated in a number of ways. The example below has had the ID <code>tab1</code> added to the <code>&lt;li&gt;</code> element.</p>
+                            <pre><code class="lang-html">&lt;ul class=&quot;tabs&quot;&gt;
+  &lt;li class=&quot;active&quot; id=&quot;tab1&quot;&gt;
+    &lt;div class=&quot;tab__title&quot;&gt;
+      ...
+    &lt;/div&gt;
+    &lt;div class=&quot;tab__content&quot;&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                            <ul>
+                                <li>Open the tab on page load by adding a hash with the tab&#39;s ID to the end of the URL bar:
+                                    <code>http://your-site.com/contact.html#tab1</code></li>
+                                <li>Clicking a link whose href contains the tab&#39;s ID will open the tab and scroll to it. Give your link class <code>inner-link</code> to smooth scroll to the tab.
+                                    <code>&lt;a href=&quot;#tab1&quot; class=&quot;inner-link&quot;&gt;Open Tab 1&lt;/a&gt;</code></li>
+                                <li><code>mr.tabs.activateTab(&#39;#tab1&#39;)</code> can be called to programatically open a tab. This function accepts the desired tab as a JS element, a jQuery element, or a selector.</li>
+                            </ul>
+                            <p>Remember: all IDs on the page must be unique.</p>
+                        </div>
+                        <hr>
+                        <h4>Events</h4>
+                        <div>
+                            <p>An event is fired from the tab&#39;s parent <code>&lt;li&gt;</code> element each time a panel is opened or closed.</p>
+                            <ul>
+                                <li><code>tabOpened.tabs.mr</code> fires on tab openening</li>
+                            </ul>
+                            <p>Events are fired for both native javascript and jQuery handlers.</p>
                         </div>
                         <hr>
                         <div class="boxed related-items">

@@ -57,6 +57,15 @@
 	}
 }
 
+@media all and (max-height: 728px){
+	.imageblock{
+		> .container, > div[class*='col-']:not(.imageblock__content){
+			padding-top: @standard-space-n/2;
+			padding-bottom: @standard-space-s/2;
+		}
+	}
+}
+
 @media all and (max-width: 767px){
 	.imageblock{
 		&[class*='space-']{

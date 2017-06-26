@@ -190,7 +190,7 @@ input{
 	}
 }
 
-input,[class*='input-'] .inner,select,textarea{
+input,[class*='input-'] label,select,textarea{
 	.transition(0.3s,ease);
 }
 
@@ -213,22 +213,38 @@ input[type="image"]{
 	width: auto;
 }
 
-label{
-	font-size: @fine-print-size;
-	+input,+.inner,+textarea,+div[class*='input-']{
-		margin-top: @base-line-height/4;
-	}
-}
-
 .bg--primary, .bg--primary-1{
 	label{
 		color: #fff;
 	}
 }
 
+.input-icon{
+	i{
+		top: 8px;
+		left: 8px;
+	}
+	input{
+		padding-left: @base-line-height*1.5;
+	}
+}
+
+.text-center{
+	.input-checkbox, .input-radio{
+		label{
+			margin: 0 auto;
+		}
+	}
+}
+
 .input-checkbox{
 	margin-top: @base-line-height/4;
-	.inner{
+	&.field-error{
+		label{
+			border-color: #EBA8A8;
+		}
+	}
+	label{
 		background: none;
 		border: 1px solid #d3d3d3;
 		text-align: center;
@@ -251,8 +267,8 @@ label{
 			.transition(0.3s,ease);
 		}
 	}
-	&.checked{
-		.inner{
+	input:checked{
+		+ label{
 			border-color: @color-primary;
 			background: @color-primary;
 			&:after{
@@ -262,7 +278,7 @@ label{
 				position: absolute;
 				width: 100%;
 				left: 0;
-				top: -2px;
+				top: -1px;
 				font-weight: 700;
 			}
 			&:before{
@@ -274,7 +290,8 @@ label{
 	+span{
 		display: inline-block;
 		position: relative;
-		bottom: 8px;
+		bottom: 10px;
+		margin-left: @base-line-height/2;
 		font-size: @fine-print-size;
 		white-space: nowrap;
 	}
@@ -292,7 +309,7 @@ label{
 .bg--dark{
 	.input-checkbox{
 		&:not(.checked){
-			.inner{
+			label{
 				border-color: lighten(@color-dark, 50%);
 			}
 		}
@@ -303,7 +320,7 @@ label{
 }
 
 .input-checkbox.input-checkbox--switch{
-	.inner{
+	label{
 		width: @base-line-height*2;
 		border-radius: 60px;
 		&:before{
@@ -312,8 +329,8 @@ label{
 			border-radius: 50%;
 			border-color: #d3d3d3;
 			opacity: 1;
-			left: 2px;
-			top: 2px;
+			left: 4px;
+			top: 4px;
 		}
 		&:hover{
 			&:before{
@@ -321,8 +338,8 @@ label{
 			}
 		}
 	}
-	&.checked{
-		.inner{
+	input:checked{
+		+ label{
 			background: none;
 			&:before{
 				animation: none !important;
@@ -338,7 +355,19 @@ label{
 }
 
 .input-radio{
-	.inner{
+	&.field-error{
+		label{
+			border-color: #EBA8A8;
+		}
+	}
+	.input__label{
+		font-size: .85714286em;
+		display: inline-block;
+		+ label{
+			margin-top: @base-line-height/2;
+		}
+	}
+	label{
 		position: relative;
 		background: none;
 		border: 1px solid #d3d3d3;
@@ -357,8 +386,8 @@ label{
 			left: 0;
 		}
 	}
-	&.checked{
-		.inner{
+	input:checked{
+		+ label{
 			border-color: @color-primary;
 			background-color: @color-primary;
 			&:after{
@@ -366,8 +395,8 @@ label{
 				position: absolute;
 				width: 10px;
 				height: 10px;
-				left: 7px;
-				top: 7px;
+				left: 9px;
+				top: 9px;
 				background-color: #fff;
 				border-radius: 50%;
 			}
@@ -379,29 +408,32 @@ label{
 }
 
 .input-radio--innerlabel{
-	transition: all .3s ease;
-	height: @base-line-height*1.5;
-	line-height: @base-line-height*1.35;
-	padding: 0 @base-line-height/2;
-	border: 1px solid #ececec;
-	border-radius: 6px;
-	cursor: pointer;
-	width: 100%;
-	text-align: center;
-	.inner{
-		display: none;
-	}
 	label{
-		pointer-events: none;
-		font-weight: 600;
+		transition: all .3s ease;
+		height: @base-line-height*1.5;
+		line-height: @base-line-height*1.35;
+		padding: 0 @base-line-height/2;
+		border: 1px solid #ececec;
+		border-radius: 6px;
+		cursor: pointer;
+		width: 100%;
+		text-align: center;
 	}
 	&:hover{
 		border-color: @color-primary;
 	}
-	&.checked{
-		border-color: @color-primary;
-		background: @color-primary;
-		color: #fff;
+	input:checked{
+		+label{
+			border-color: @color-primary;
+			background: @color-primary;
+			color: #fff;
+			&:after{
+				display: none;
+			}
+			&:before{
+				animation: none;
+			}
+		}
 	}
 }
 

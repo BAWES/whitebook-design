@@ -1785,14 +1785,47 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="boxed bg--secondary boxed--lg boxed--border">
+                                <h4>Inputs with Icons</h4>
+                                <p>
+                                    Use any of Stack's icons to help give form inputs context. Simply wrap the
+                                    <strong>&lt;input&gt;</strong> tag alongside an
+                                    <strong>&lt;i&gt;</strong> icon element inside a
+                                    <strong>.input-icon</strong> wrapper.
+                                </p>
+                                <pre>
+&lt;div class="input-icon"&gt;
+	&lt;i class="material-icons"&gt;person&lt;/i&gt;
+	&lt;input type="text" name="input" placeholder="Enter your name" /&gt;
+&lt;/div&gt;
+					</pre>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-sm-push-1">
+                            <form>
+                                <div class="input-icon">
+                                    <i class="material-icons">person</i>
+                                    <input type="text" name="input" placeholder="Enter your name" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="boxed bg--secondary boxed--lg boxed--border">
                                 <h4>Checkbox Inputs</h4>
                                 <p>
-                                    Wrap checkbox inputs in the input-checkbox element for a more stylish option. Alternatively, place a span directly after to group the two for visual usability
+                                    Wrap checkbox inputs in the input-checkbox element with a child the child input, and a proceeding label element for a more stylish option. Alternatively, place a span directly after to group the two for visual usability
                                 </p>
                                 <pre>
 &lt;div class="input-checkbox"&gt;
-	&lt;div class="inner"&gt;&lt;/div&gt;
-	&lt;input type="checkbox" name="agree" /&gt;
+	&lt;input id="checkbox" type="checkbox" name="agree" /&gt;
+	&lt;label for="checkbox"&gt;&lt;/label&gt;
 &lt;/div&gt;
 &lt;span&gt;Helper text for checkbox&lt;/span&gt;
 					</pre>
@@ -1801,8 +1834,8 @@
                         <div class="col-sm-6 col-sm-push-1">
                             <form>
                                 <div class="input-checkbox">
-                                    <div class="inner"></div>
-                                    <input type="checkbox" name="agree" />
+                                    <input id="check-test" type="checkbox" name="agree" />
+                                    <label for="check-test"></label>
                                 </div>
                                 <span>I have read and agree to the
                                     <a href="#">terms and conditions</a>
@@ -1827,8 +1860,8 @@
                                 </p>
                                 <pre>
 &lt;div class="input-checkbox input-checkbox--switch"&gt;
-	&lt;div class="inner"&gt;&lt;/div&gt;
-	&lt;input type="checkbox" name="agree" /&gt;
+	&lt;input id="checkbox-switch" type="checkbox" name="agree" /&gt;
+	&lt;label for="checkbox-switch"&gt;&lt;/label&gt;
 &lt;/div&gt;
 &lt;span&gt;Helper text for checkbox&lt;/span&gt;
 					</pre>
@@ -1837,8 +1870,8 @@
                         <div class="col-sm-6 col-sm-push-1">
                             <form>
                                 <div class="input-checkbox input-checkbox--switch">
-                                    <div class="inner"></div>
-                                    <input type="checkbox" name="agree" />
+                                    <input id="checkbox-switch" type="checkbox" name="agree" />
+                                    <label for="checkbox-switch"></label>
                                 </div>
                                 <span>I have read and agree to the
                                     <a href="#">terms and conditions</a>
@@ -1857,13 +1890,13 @@
                             <div class="boxed bg--secondary boxed--lg boxed--border">
                                 <h4>Radio Inputs</h4>
                                 <p>
-                                    Wrap radio inputs in the input-radio element for a more stylish option. Use in conjunction with the &lt;label&gt; tag.
+                                    Wrap radio inputs in the input-radio element with a child input and proceeding label element for a more stylish option.
                                 </p>
                                 <pre>
 &lt;div class="input-radio"&gt;
-	&lt;label&gt;Label&lt;/label&gt;
-	&lt;div class="inner"&gt;&lt;/div&gt;
-	&lt;input type="radio" name="radio" value="radio1" /&gt;
+	&lt;span class="input__label"&gt;Option 1&lt;/span&gt;
+	&lt;input id="radio-1" type="radio" name="radio" value="radio1" /&gt;
+	&lt;label for="radio-1"&gt;&lt;/label&gt;
 &lt;/div&gt;
 					</pre>
                             </div>
@@ -1872,23 +1905,23 @@
                             <form>
                                 <div class="col-sm-4">
                                     <div class="input-radio">
-                                        <label>Option 1</label>
-                                        <div class="inner"></div>
+                                        <span class="input__label">Option 1</span>
                                         <input type="radio" name="radio" value="radio1" />
+                                        <label></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-radio">
-                                        <label>Option 2</label>
-                                        <div class="inner"></div>
-                                        <input type="radio" name="radio" value="radio1" />
+                                        <span class="input__label">Option 2</span>
+                                        <input id="radio-input-2" type="radio" name="radio" value="radio2" />
+                                        <label for="radio-input-2"></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-radio">
-                                        <label>Option 3</label>
-                                        <div class="inner"></div>
-                                        <input type="radio" name="radio" value="radio1" />
+                                        <span class="input__label">Option 3</span>
+                                        <input id="radio-input-3" type="radio" name="radio" value="radio3" />
+                                        <label for="radio-input-3"></label>
                                     </div>
                                 </div>
                             </form>
@@ -1910,9 +1943,8 @@
                                 </p>
                                 <pre>
 &lt;div class="input-radio input-radio--innerlabel"&gt;
-	&lt;label&gt;Label&lt;/label&gt;
-	&lt;div class="inner"&gt;&lt;/div&gt;
-	&lt;input type="radio" name="radio" value="radio1" /&gt;
+	&lt;input id="radio-1" type="radio" name="radio" value="radio1" /&gt;
+	&lt;label for="radio-1"&gt;Label Text&lt;/label&gt;
 &lt;/div&gt;
 					</pre>
                             </div>
@@ -1921,23 +1953,20 @@
                             <form>
                                 <div class="col-sm-4">
                                     <div class="input-radio input-radio--innerlabel">
-                                        <label>Option 1</label>
-                                        <div class="inner"></div>
-                                        <input type="radio" name="radio" value="radio1" />
+                                        <input id="radio-4" type="radio" name="radio_2" value="radio4" />
+                                        <label for="radio-4">Option 1</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-radio input-radio--innerlabel">
-                                        <label>Option 2</label>
-                                        <div class="inner"></div>
-                                        <input type="radio" name="radio" value="radio1" />
+                                        <input id="radio-5" type="radio" name="radio_2" value="radio5" />
+                                        <label for="radio-5">Option 2</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-radio input-radio--innerlabel">
-                                        <label>Option 3</label>
-                                        <div class="inner"></div>
-                                        <input type="radio" name="radio" value="radio1" />
+                                        <input id="radio-6" type="radio" name="radio_2" value="radio6" />
+                                        <label for="radio-6">Option 3</label>
                                     </div>
                                 </div>
                             </form>
@@ -2104,8 +2133,8 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="input-checkbox">
-                                        <div class="inner"></div>
                                         <input type="checkbox" name="agree" />
+                                        <label></label>
                                     </div>
                                     <span>I have read and agree to the
                                         <a href="#">terms and conditions</a>
@@ -2113,23 +2142,23 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-radio">
-                                        <label>Goji Berries</label>
-                                        <div class="inner"></div>
-                                        <input type="radio" name="radio" value="radio1" />
+                                        <span class="input__label">Goji Berries</span>
+                                        <input type="radio" name="type" value="goji" />
+                                        <label></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-radio">
-                                        <label>Fennel</label>
-                                        <div class="inner"></div>
-                                        <input type="radio" name="radio" value="radio1" />
+                                        <span class="input__label">Fennel</span>
+                                        <input type="radio" name="type" value="fennel" />
+                                        <label></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-radio">
-                                        <label>Flaxseed</label>
-                                        <div class="inner"></div>
-                                        <input type="radio" name="radio" value="radio1" />
+                                        <span class="input__label">Flaxseed</span>
+                                        <input type="radio" name="type" value="flaxseed" />
+                                        <label></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">

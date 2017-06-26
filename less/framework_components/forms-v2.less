@@ -148,26 +148,29 @@ button{
 	}
 }
 
+.input-icon{
+	position: relative;
+	i{
+		.disable-select;
+		cursor: default;
+		position: absolute;
+	}
+}
+
 .input-checkbox, .input-radio, .input-select{
 	.disable-select;
 	display: inline-block;
-	cursor: pointer;
-	.inner{
-		display: inline-block;
-	}
 	input{
 		display: none !important;
 	}
-	&.checked .inner{
-		background: @color-primary;
-	}
 	label{
 		display: block !important;
+		cursor: pointer;
 	}
 }
 
 .input-checkbox{
-	.inner{
+	label{
 		width: @checkbox-width;
 		height: @checkbox-height;
 		border-radius: @checkbox-border-radius;
@@ -177,7 +180,7 @@ button{
 }
 
 .input-radio{
-	.inner{
+	label{
 		width: @radio-width;
 		height: @radio-height;
 		border-radius: @radio-border-radius;

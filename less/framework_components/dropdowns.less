@@ -129,7 +129,7 @@ body:not(.dropdowns--hover){
 @media all and (max-width: 990px){
 	body.dropdowns--hover{
 		.dropdown:not(.dropdown--click){
-			&:hover{
+			&.dropdown--active{
 				>.dropdown__container{
 					&:before{
 						pointer-events: all;
@@ -142,18 +142,6 @@ body:not(.dropdowns--hover){
 }
 
 @media all and (max-width: 767px){
-	.dropdown--hover:hover{
-		> .dropdown__container{
-			display: block !important;
-		}
-	}
-	body.dropdowns--hover{
-		.dropdown:hover{
-			> .dropdown__container{
-				display: block !important;
-			}
-		}
-	}
 	.dropdown{
 		&.dropdown--absolute{
 			.dropdown__container{

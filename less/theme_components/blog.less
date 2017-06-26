@@ -92,6 +92,27 @@ article{
 	}
 }
 
+figure[class*='col-']{
+	padding: 0 !important;
+}
+figure.pull-right{
+	margin-left: @base-line-height*1.5;
+}
+figure.pull-left{
+	margin-right: @base-line-height*1.5;
+}
+figure{
+	img{
+		&:not(:last-child){
+			margin-bottom: @base-line-height/4 !important;
+		}
+	}
+	figcaption{
+		font-size: @h6-size;
+		font-style: italic;
+	}
+}
+
 section.unpad{
 	> article{
 		.imagebg + div{
