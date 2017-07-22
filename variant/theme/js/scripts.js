@@ -5,6 +5,7 @@ var mr = (function ($, window, document){
     var mr         = {},
         components = {documentReady: [],documentReadyDeferred: [], windowLoad: [], windowLoadDeferred: []};
 
+    mr.status = {documentReadyRan: false, windowLoadPending: false};
 
     
     
@@ -15,14 +16,22 @@ var mr = (function ($, window, document){
         components.documentReady.concat(components.documentReadyDeferred).forEach(function(component){
             component(context);
         });
+        mr.status.documentReadyRan = true;
+        if(mr.status.windowLoadPending){
+            windowLoad(mr.setContext());
+        }
     }
 
     function windowLoad(context){
-        
-        context = typeof context === "object" ? $ : context;
-        components.windowLoad.concat(components.windowLoadDeferred).forEach(function(component){
-           component(context);
-        });
+        if(mr.status.documentReadyRan){
+            mr.status.windowLoadPending = false;
+            context = typeof context === "object" ? $ : context;
+            components.windowLoad.concat(components.windowLoadDeferred).forEach(function(component){
+               component(context);
+            });
+        }else{
+            mr.status.windowLoadPending = true;
+        }
     }
 
     mr.setContext = function (contextSelector){
@@ -136,16 +145,14 @@ mr = (function (mr, $, window, document){
     mr.util.activateIdleSrc = function(context, selector){
         
         selector     = (typeof selector !== typeof undefined) ? selector : '';
-        var elems    = context.is(selector+'[src]') ? context : context.find(selector+'[src]');
+        var elems    = context.is(selector+'[data-src]') ? context : context.find(selector+'[data-src]');
 
         elems.each(function(index, elem){
             elem = $(elem);
             var dataSrc    = elem.attr('data-src');
 
-            // If there is no data-src, save current source to it
-            if(typeof dataSrc !== typeof undefined){
-                elem.attr('src', dataSrc);
-            }
+            // Write the 'src' attribute using the 'data-src' value
+            elem.attr('src', dataSrc);
         });
     };
 
@@ -420,8 +427,10 @@ mr = (function (mr, $, window, document){
         }else{
             if(accordion.hasClass('accordion--oneopen')){
                 var wasActive = accordion.find('li.active');
-                wasActive.removeClass('active');
-                wasActive.trigger('panelClosed.accordions.mr').get(0).dispatchEvent(closeEvent);
+                if(wasActive.length){
+                    wasActive.removeClass('active');
+                    wasActive.trigger('panelClosed.accordions.mr').get(0).dispatchEvent(closeEvent);
+                }
                 li.addClass('active');
                 li.trigger('panelOpened.accordions.mr').get(0).dispatchEvent(openEvent);
                 
@@ -1021,7 +1030,7 @@ mr = (function (mr, $, window, document){
 
                 jQuery.ajax({
                     type: "POST",
-                    url: "mail/mail.php",
+                    url: (formAction !== "" ? formAction : "mail/mail.php"),
                     data: thisForm.serialize()+"&url="+window.location.href+"&captcha="+captchaUsed,
                     success: function(response) {
                         // Swiftmailer always sends back a number representing number of emails sent.
@@ -1365,27 +1374,32 @@ mr = (function (mr, $, window, document){
             if(typeof window.google.maps !== "undefined"){
                 
                 jQuery('.gmaps-active').each(function(){
-                    var mapElement    = this,
-                        mapInstance   = jQuery(this),
-                        mapJSON       = typeof mapInstance.attr('data-map-style') !== typeof undefined ? mapInstance.attr('data-map-style'): false,
-                        mapStyle      = JSON.parse(mapJSON) || [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}],
-                        zoomLevel     = (typeof mapInstance.attr('data-map-zoom') !== typeof undefined && mapInstance.attr('data-map-zoom') !== "") ? mapInstance.attr('data-map-zoom') * 1: 17,
-                        latlong       = typeof mapInstance.attr('data-latlong') !== typeof undefined ? mapInstance.attr('data-latlong') : false,
-                        latitude      = latlong ? 1 *latlong.substr(0, latlong.indexOf(',')) : false,
-                        longitude     = latlong ? 1 * latlong.substr(latlong.indexOf(",") + 1) : false,
-                        geocoder      = new google.maps.Geocoder(),
-                        address       = typeof mapInstance.attr('data-address') !== typeof undefined ? mapInstance.attr('data-address').split(';'): [""],
-                        markerImage   = typeof mapInstance.attr('data-marker-image') !== typeof undefined ? mapInstance.attr('data-marker-image'): 'img/mapmarker.png',
-                        markerTitle   = "We Are Here",
-                        isDraggable   = jQuery(document).width() > 766 ? true : false,
+                    var mapElement      = this,
+                        mapInstance     = jQuery(this),
+                        mapJSON         = typeof mapInstance.attr('data-map-style') !== typeof undefined ? mapInstance.attr('data-map-style'): false,
+                        mapStyle        = JSON.parse(mapJSON) || [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}],
+                        zoomLevel       = (typeof mapInstance.attr('data-map-zoom') !== typeof undefined && mapInstance.attr('data-map-zoom') !== "") ? mapInstance.attr('data-map-zoom') * 1: 17,
+                        showZoomControl = typeof mapInstance.attr('data-zoom-controls') !== typeof undefined ? true : false,
+                        zoomControlPos  = typeof mapInstance.attr('data-zoom-controls') !== typeof undefined ? mapInstance.attr('data-zoom-controls'): false,
+                        latlong         = typeof mapInstance.attr('data-latlong') !== typeof undefined ? mapInstance.attr('data-latlong') : false,
+                        latitude        = latlong ? 1 *latlong.substr(0, latlong.indexOf(',')) : false,
+                        longitude       = latlong ? 1 * latlong.substr(latlong.indexOf(",") + 1) : false,
+                        geocoder        = new google.maps.Geocoder(),
+                        address         = typeof mapInstance.attr('data-address') !== typeof undefined ? mapInstance.attr('data-address').split(';'): [""],
+                        markerImage     = typeof mapInstance.attr('data-marker-image') !== typeof undefined ? mapInstance.attr('data-marker-image'): 'img/mapmarker.png',
+                        markerTitle     = "We Are Here",
+                        isDraggable     = jQuery(document).width() > 766 ? true : false,
                         map, marker,
                         mapOptions = {
                             draggable: isDraggable,
                             scrollwheel: false,
                             zoom: zoomLevel,
                             disableDefaultUI: true,
+                            zoomControl: showZoomControl,
+                            zoomControlOptions: zoomControlPos !== false ? {position: google.maps.ControlPosition[zoomControlPos]} : null,
                             styles: mapStyle
                         };
+                        console.log(mapOptions);
 
                     if(typeof mapInstance.attr('data-marker-title') !== typeof undefined && mapInstance.attr('data-marker-title') !== "" )
                     {
@@ -1468,7 +1482,7 @@ mr = (function (mr, $, window, document){
 
         mr.masonry.updateFilters();
 
-        $(document).on('click touchstart', '.masonry__filters li', function(){
+        $(document).on('click touchstart', '.masonry__filters li:not(.js-no-action)', function(){
             var masonryFilter = $(this);
             var masonryContainer = masonryFilter.closest('.masonry').find('.masonry__container');
             var filterValue = '*';
@@ -1793,8 +1807,14 @@ mr = (function (mr, $, window, document){
             }  
         }
 
+        jQuery(document).on('click','a[href^="#"]', function(){
+            var modalID = $(this).attr('href').replace('#', '');
+            mr.modals.closeActiveModal();
+            setTimeout(mr.modals.showModal, 500,'[data-modal-id="'+modalID+'"]', 0);
+        });
+
         // Make modal scrollable
-        $(document).on('wheel mousewheel scroll','.modal-content, .modal-content .scrollable', function(evt){
+        jQuery(document).on('wheel mousewheel scroll','.modal-content, .modal-content .scrollable', function(evt){
             if(evt.preventDefault){evt.preventDefault();}
             if(evt.stopPropagation){evt.stopPropagation();}
             this.scrollTop += (evt.originalEvent.deltaY); 
@@ -1974,11 +1994,11 @@ mr = (function (mr, $, window, document){
     	// Wrap checboxes elements in template code
 
     	form.find('input[type="checkbox"]').each(function(){
-    		checkbox = $(this);
+    		checkbox = jQuery(this);
     		parent = checkbox.parent();
     		label = parent.find('label');
             if(!label.length){
-                label = $('<label></label>');
+                label = jQuery('<label>');
             }
     		checkbox.before('<div class="input-checkbox"></div>');
     		parent.find('.input-checkbox').append(checkbox);
@@ -1988,11 +2008,11 @@ mr = (function (mr, $, window, document){
     	// Wrap radio elements in template code
 
     	form.find('input[type="radio"]').each(function(){
-    		radio = $(this);
+    		radio = jQuery(this);
     		parent = radio.closest('li');
     		label = parent.find('label');
             if(!label.length){
-                label = $('<label></label>');
+                label = jQuery('<label>');
             }
     		radio.before('<div class="input-radio"></div>');
     		parent.find('.input-radio').prepend(radio);
@@ -2181,18 +2201,14 @@ mr = (function (mr, $, window, document){
 mr = (function (mr, $, window, document){
     "use strict";
     
+    mr.parallax = {};
+
     var documentReady = function($){
         
         var $window      = $(window); 
         var windowWidth  = $window.width();
         var windowHeight = $window.height();
         var navHeight    = $('nav').outerHeight(true);
-
-        // Disable parallax on mobile
-
-        if ((/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
-            $('section').removeClass('parallax');
-        }
 
         if (windowWidth > 768) {
             var parallaxHero = $('.parallax:nth-of-type(1)'),
@@ -2205,8 +2221,14 @@ mr = (function (mr, $, window, document){
         }
     };
 
-    mr.parallax = {
-        documentReady : documentReady        
+    
+    mr.parallax.documentReady = documentReady;        
+    
+    mr.parallax.update = function(){
+        if(typeof mr_parallax !== typeof undefined){
+            mr_parallax.profileParallaxElements();
+            mr_parallax.mr_parallaxBackground();
+        }
     };
 
     mr.components.documentReady.push(documentReady);
@@ -2365,6 +2387,8 @@ mr = (function (mr, $, window, document){
               }
             });
         });
+
+        mr.parallax.update();
         
     };
 
@@ -2723,7 +2747,7 @@ mr = (function (mr, $, window, document){
 
 			$('.video-cover').each(function(){
 			    var videoCover = $(this);
-			    if(videoCover.find('iframe').length){
+			    if(videoCover.find('iframe[src]').length){
 			        videoCover.find('iframe').attr('data-src', videoCover.find('iframe').attr('src'));
 			        videoCover.find('iframe').attr('src','');
 			    }
@@ -2761,18 +2785,22 @@ mr = (function (mr, $, window, document){
     
 	  var documentReady = function($){
 
-		$('.wizard').each(function(){
-			var wizard = jQuery(this);
-			wizard.steps({
-				headerTag: "h5",
-				bodyTag: "section",
-				transitionEffect: "slideLeft",
-				autoFocus: true
-			});
-			wizard.addClass('active');
-		});
-			
-	  };
+			$('.wizard').each(function(){
+				var wizard = jQuery(this);
+
+				if(!wizard.is('[role="application"][id^="steps-uid"]')){  	
+						wizard.steps({
+							headerTag: "h5",
+							bodyTag: "section",
+							transitionEffect: "slideLeft",
+							autoFocus: true
+						});
+		
+		   	    wizard.addClass('active');
+		    }
+				
+		  });
+		};
 
 	  mr.wizard = {
 	      documentReady : documentReady        

@@ -164,5 +164,23 @@
 		h5{
 			margin-bottom: 0;
 		}
+		&:not([style]){
+			.hover-item{
+				min-height: 450px;
+				background: lighten(@color-dark, 5%);
+				border: 1px solid lighten(@color-dark, 10%);
+			}
+		}
+	}
+	.hover-item{
+		.transition(0.35s,ease-out);
+		border-radius: 6px;
+		overflow: hidden;
+		&:hover{
+			transform: translateY(-10px);
+		}
+	}
+	.masonry__container{
+		margin-top: @base-line-height*2;
 	}
 }

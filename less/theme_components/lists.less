@@ -119,3 +119,22 @@ ol{
 		min-width: 100%;
 	}
 }
+
+.row--list{
+	span.h6{
+		margin-bottom: 0;
+	}
+	span.h3{
+		&:last-child{
+			margin-bottom: 0;
+		}
+	}
+}
+
+@media all and (max-width: 767px){
+	.row--list{
+		> li{
+			margin-bottom: @base-line-height/2;
+		}
+	}
+}

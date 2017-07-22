@@ -17,9 +17,12 @@
 @media all and (max-width: 1024px) {
   .parallax > .background-image-holder,
   .parallax .slides li > .background-image-holder {
+    -webkit-transition: transform 0.016s linear !important;
+    transition: transform 0.016s linear !important;
+  }
+  .parallax.parallax-disable-mobile .background-image-holder,
+  .parallax.parallax-disable-mobile .slides li > .background-image-holder{
     top: 0 !important;
     transform: none !important;
-    -webkit-transform: none !important;
-    height: 100%;
   }
 }

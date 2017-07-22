@@ -827,6 +827,9 @@ div[data-overlay] ul {
 .image--sm {
   max-height: 5.57142857em;
 }
+.image--md {
+  max-height: 7.42857143em;
+}
 /**! 06. Buttons **/
 .btn {
   font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
@@ -1417,7 +1420,10 @@ button.bg--error {
 .input-checkbox input,
 .input-radio input,
 .input-select input {
-  display: none !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
 }
 .input-checkbox label,
 .input-radio label,
@@ -1621,6 +1627,11 @@ div.recaptcha iframe {
 }
 .tabs-container[data-content-align="left"] .tabs-content {
   text-align: left;
+}
+@media all and (max-width: 767px) {
+  .tabs-content > li:not(.active) .tab__content {
+    display: none !important;
+  }
 }
 /**! 17. Boxes **/
 .boxed {
@@ -2199,10 +2210,13 @@ section.slider .flickity-page-dots {
 @media all and (max-width: 1024px) {
   .parallax > .background-image-holder,
   .parallax .slides li > .background-image-holder {
+    -webkit-transition: transform 0.016s linear !important;
+    transition: transform 0.016s linear !important;
+  }
+  .parallax.parallax-disable-mobile .background-image-holder,
+  .parallax.parallax-disable-mobile .slides li > .background-image-holder {
     top: 0 !important;
     transform: none !important;
-    -webkit-transform: none !important;
-    height: 100%;
   }
 }
 /**! 24. Notifications **/
@@ -3148,6 +3162,7 @@ form[action*='list-manage.com'] .small-meta {
 /**! 33. Gradient BG **/
 [data-gradient-bg] {
   position: relative;
+  background: #252525;
 }
 [data-gradient-bg] > canvas {
   position: absolute;
@@ -4304,6 +4319,17 @@ ol.lead li:not(:last-child) {
     min-width: 100%;
   }
 }
+.row--list span.h6 {
+  margin-bottom: 0;
+}
+.row--list span.h3:last-child {
+  margin-bottom: 0;
+}
+@media all and (max-width: 767px) {
+  .row--list > li {
+    margin-bottom: 0.92857143em;
+  }
+}
 /*! -- Stack Rules -- */
 hr:first-child {
   margin-top: 0;
@@ -4656,6 +4682,10 @@ section.parallax .row .background-image-holder {
   background: #143642;
 }
 /*! -- Stack Bars -- */
+.menu-horizontal > li,
+.menu-vertical > li {
+  font-family: 'Open Sans', 'Roboto', 'Helvetica', Sans-Serif;
+}
 .bar .logo {
   max-height: 1.85714286em;
   max-width: none;
@@ -5468,6 +5498,24 @@ p .material-icons:first-child {
 .material-icons {
   font-family: 'Material Icons' !important;
 }
+.icon-circle {
+  position: relative;
+  display: inline-block;
+  width: 3.71428571em;
+  height: 3.71428571em;
+  border-radius: 50%;
+  border: 1px solid #ececec;
+  background: #fafafa;
+  text-align: center;
+}
+.icon-circle i {
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  left: 0;
+}
 /*! -- Stack Tooltips -- */
 .tooltip {
   position: relative;
@@ -5871,6 +5919,8 @@ a.block:hover > .feature {
 @media all and (max-width: 767px) {
   .feature p {
     min-height: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   .feature.boxed {
     margin-bottom: 15px;
@@ -7075,6 +7125,9 @@ input[type="image"] {
   padding: none;
   width: auto;
 }
+label {
+  font-size: .85714286em;
+}
 .bg--primary label,
 .bg--primary-1 label {
   color: #fff;
@@ -7089,6 +7142,10 @@ input[type="image"] {
 .text-center .input-checkbox label,
 .text-center .input-radio label {
   margin: 0 auto;
+}
+.input-checkbox label,
+.input-radio label {
+  font-size: 1em;
 }
 .input-checkbox {
   margin-top: 0.46428571em;
@@ -7132,7 +7189,7 @@ input[type="image"] {
   position: absolute;
   width: 100%;
   left: 0;
-  top: -1px;
+  top: -2px;
   font-weight: 700;
 }
 .input-checkbox input:checked + label:before {
@@ -7169,8 +7226,8 @@ input[type="image"] {
   border-radius: 50%;
   border-color: #d3d3d3;
   opacity: 1;
-  left: 4px;
-  top: 4px;
+  left: 2px;
+  top: 2px;
 }
 .input-checkbox.input-checkbox--switch label:hover:before {
   border-color: #f18f01;
@@ -7227,8 +7284,8 @@ input[type="image"] {
   position: absolute;
   width: 10px;
   height: 10px;
-  left: 9px;
-  top: 9px;
+  left: 7px;
+  top: 7px;
   background-color: #fff;
   border-radius: 50%;
 }
@@ -7259,6 +7316,12 @@ input[type="image"] {
 }
 .input-radio--innerlabel input:checked + label:before {
   animation: none;
+}
+@media all and (max-width: 1024px) {
+  .input-radio input:checked + label:after {
+    top: 6px;
+    left: 6px;
+  }
 }
 .bg--primary .input-radio--innerlabel {
   border-color: #fea627;
@@ -7992,6 +8055,24 @@ iframe[src*='google.com/maps'] {
 .masonry.masonry-demos .masonry__item h5 {
   margin-bottom: 0;
 }
+.masonry.masonry-demos .masonry__item:not([style]) .hover-item {
+  min-height: 450px;
+  background: #323232;
+  border: 1px solid #3f3f3f;
+}
+.masonry.masonry-demos .hover-item {
+  transition: 0.35s ease-out;
+  -webkit-transition: 0.35s ease-out;
+  -moz-transition: 0.35s ease-out;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.masonry.masonry-demos .hover-item:hover {
+  transform: translateY(-10px);
+}
+.masonry.masonry-demos .masonry__container {
+  margin-top: 3.71428571em;
+}
 /*! -- Stack Blog -- */
 article .article__title {
   margin-bottom: 3.71428571em;
@@ -8695,6 +8776,9 @@ footer.footer-6.bg--dark .footer__lower {
 }
 footer.footer-6.bg--secondary .footer__lower {
   background: #f5f5f5;
+}
+footer.footer-6.bg--primary .footer__lower {
+  background: #d88001;
 }
 footer.footer-7 {
   padding: 1.85714286em 0;

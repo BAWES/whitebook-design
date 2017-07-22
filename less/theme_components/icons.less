@@ -35,3 +35,23 @@ p{
 .material-icons{
 	font-family: 'Material Icons' !important;
 }
+
+.icon-circle{
+	position: relative;
+	display: inline-block;
+	width: @base-line-height*2;
+	height: @base-line-height*2;
+	border-radius: 50%;
+	border: 1px solid #ececec;
+	background: @color-bg-secondary;
+	text-align: center;
+	i{
+		font-size: 24px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 100%;
+		left: 0;
+
+	}
+}

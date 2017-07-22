@@ -82,6 +82,9 @@
                                 <a class="navigation-link component-link" href="#formsphp" data-slug="formsphp">Forms - Native PHP mail()</a>
                             </li>
                             <li>
+                                <a class="navigation-link component-link" href="#forms-action" data-slug="forms-action">Forms - Overriding form action</a>
+                            </li>
+                            <li>
                                 <a class="navigation-link component-link" href="#formsvalidation" data-slug="formsvalidation">Forms - Validation</a>
                             </li>
                             <li>
@@ -102,13 +105,13 @@
                             <li>
                                 <a class="navigation-link component-link" href="#instagram" data-slug="instagram">Instagram</a>
                             </li>
-                            <li>
-                                <a class="navigation-link component-link" href="#less-files" data-slug="less-files">LESS Files</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
                         <ul>
+                            <li>
+                                <a class="navigation-link component-link" href="#less-files" data-slug="less-files">LESS Files</a>
+                            </li>
                             <li>
                                 <a class="navigation-link component-link" href="#lightbox" data-slug="lightbox">Lightbox</a>
                             </li>
@@ -133,13 +136,13 @@
                             <li>
                                 <a class="navigation-link component-link" href="#radials" data-slug="radials">Radials</a>
                             </li>
-                            <li>
-                                <a class="navigation-link component-link" href="#spacing-helpers" data-slug="spacing-helpers">Spacing - Helpers</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
                         <ul>
+                            <li>
+                                <a class="navigation-link component-link" href="#spacing-helpers" data-slug="spacing-helpers">Spacing - Helpers</a>
+                            </li>
                             <li>
                                 <a class="navigation-link component-link" href="#spacing-sections" data-slug="spacing-sections">Spacing - Sections</a>
                             </li>
@@ -751,6 +754,22 @@ $outgoingServerSecurity     = &#39;tls&#39;;                // Options: &#39;ssl
                 </div>
             </div>
         </section>
+        <a id="forms-action"></a>
+        <section class="docs-module" data-slug="forms-action">
+            <div class="deactivate"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <h2 class="section-title">Forms - Overriding form action</h2>
+                        <h4>Description</h4>
+                        <div>
+                            <p>Forms with class <code>form-email</code> are automatically set up to submit to mail.php in the mail folder. If you server requires a different path for the mail folder, you can specify a different path to override the default <code>mail/mail.php</code> path by adding a custom action attribute to your form element.</p>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </section>
         <a id="formsvalidation"></a>
         <section class="docs-module" data-slug="formsvalidation">
             <div class="deactivate"></div>
@@ -1225,6 +1244,17 @@ $outgoingServerSecurity     = &#39;tls&#39;;                // Options: &#39;ssl
                             </p>
                         </div>
                         <hr>
+                        <h4>Map Zoom Controls</h4>
+                        <div>
+                            <p>By Default, the map zoom controls are hidden. To show them on the map, add the <code>data-zoom-controls</code> attribute to the map canvas div. A full list of available positioning options is available at the
+                                <a href="https://developers.google.com/maps/documentation/javascript/controls#ControlPositioning">Google Maps API Documentation</a>.</p>
+                            <pre><code class="lang-html">  &lt;div class=&quot;map-canvas&quot; data-zoom-controls=&quot;BOTTOM_RIGHT&quot; data-maps-api-key=&quot;AIzaSJiT6D4E0PlvR45biSx0DoWRswL1kfdO9ZU&quot; &gt;&lt;/div&gt;
+</code></pre>
+                            <p>
+                                <em>This only applies to sections with a Google Maps javascript API enabled map - setting the zoom level for an iframe embedded map is a different process explained below.</em>
+                            </p>
+                        </div>
+                        <hr>
                         <h4>Map Zoom Level</h4>
                         <div>
                             <p>You must set the zoom level appropriately to show the map of your desired area at the right size. In Variant, click the zoom in icon on the section with your map and provide a number between 1 and 18 where 18 is fully zoomed in and 1 is zoomed out completely. In Variant, the map will reset at the specified zoom level. If you are editing HTML outside of Variant, add a data-map-zoom attribute with a number as the value like so, save, then refresh the page:</p>
@@ -1372,8 +1402,16 @@ $outgoingServerSecurity     = &#39;tls&#39;;                // Options: &#39;ssl
                         <hr>
                         <h4>Autoshow by ID in URL</h4>
                         <div>
-                            <p>By adding the optional <code>data-modal-id</code> to the <code>modal-container</code> div of your modals, you can summon any modal to show automatically by including the id in the page URL like so: eg. to show modal with id
-                                <em>project-1</em> your URL would look like this: <code>http://yoursite.com/projects.html#project-1</code>.</p>
+                            <p>By adding the optional <code>data-modal-id</code> to the <code>modal-container</code> div of your modals, you can summon any modal to show automatically by including the ID in the page URL like so: eg. to show modal with ID
+                                <em>project-1</em> your URL would look like this: </p>
+                            <p><code>http://yoursite.com/projects.html#project-1</code>.</p>
+                        </div>
+                        <hr>
+                        <h4>Clicking a Link to Show Modal</h4>
+                        <div>
+                            <p>By adding the optional <code>data-modal-id</code> to the <code>modal-container</code> div of your modals, you can summon any modal to show upon link click by including the modal&#39;s ID in the href attribute of a link like so: eg. to show modal with ID
+                                <em>create-account</em> your link would look like this:</p>
+                            <p><code>&lt;a href=&quot;#create-account&quot;&gt;Create Account&lt;/a&gt;</code>.</p>
                         </div>
                         <hr>
                         <h4>Exit Modals</h4>
@@ -1575,6 +1613,11 @@ mr.modals.showModal(modal);
   &lt;/div&gt;
 &lt;/section&gt;
 </code></pre>
+                        </div>
+                        <hr>
+                        <h4>Mobile Browsers</h4>
+                        <div>
+                            <p>Parallax has now been updated to display on mobile (iOS and Android) browsers. If you wish to disable the effect on mobile, this can be done on a per-section basis by adding the <code>parallax-disable-mobile</code> class.</p>
                         </div>
                         <hr>
                     </div>
